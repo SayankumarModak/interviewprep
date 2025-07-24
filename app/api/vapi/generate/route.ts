@@ -23,17 +23,17 @@ export async function POST(request: Request) {
         Thank you! <3
     `,
       });
-        const cleanedQuestions = questions
-    .replace(/```json/g, "")
-    .replace(/```/g, "")
-    .trim();
+      const cleanedQuestions = questions
+         .replace(/```json/g, "")
+         .replace(/```/g, "")
+         .trim();
 
       const interview = {
          role: role,
          type: type,
          level: level,
          techstack: techstack.split(","),
-         questions:JSON.parse(cleanedQuestions),
+         questions: JSON.parse(cleanedQuestions),
          userId: userid,
          finalized: true,
          coverImage: getRandomInterviewCover(),
@@ -49,7 +49,7 @@ export async function POST(request: Request) {
    } catch (error) {
       console.error("error:", error)
       return Response.json({
-         
+
          success: false,
          error: error
       }, { status: 500 });

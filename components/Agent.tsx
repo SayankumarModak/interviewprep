@@ -316,6 +316,7 @@ const Agent = ({
    const [messages, setMessages] = useState<SavedMessage[]>([]);
    const [isSpeaking, setIsSpeaking] = useState(false);
    const [lastMessage, setLastMessage] = useState<string>("");
+
    useEffect(() => {
       const onCallStart = () => {
          setCallStatus(CallStatus.ACTIVE);
@@ -384,7 +385,7 @@ const Agent = ({
    }, [messages, callStatus, feedbackId, interviewId, router, type, userId]);
 
 
-     const handleCall = async () => {
+   const handleCall = async () => {
       setCallStatus(CallStatus.CONNECTING);
       try {
          if (type === "generate") {

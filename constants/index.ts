@@ -1,6 +1,8 @@
 // import { CreateAssistantDTO } from "@vapi-ai/web/dist/api";
 // import { z } from "zod";
 
+import { CreateAssistantDTO } from "@vapi-ai/web/dist/api";
+
 export const mappings = {
   "react.js": "react",
   reactjs: "react",
@@ -154,6 +156,10 @@ End the conversation on a polite and positive note.
     ],
   },
 };
+
+
+
+
 
 // export const feedbackSchema = z.object({
 //   totalScore: z.number(),

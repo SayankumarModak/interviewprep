@@ -106,7 +106,7 @@ export async function getCurrentUser(): Promise<User | null> {
 
 
   const sessionCookie = cookieStore.get("__session")?.value;
-  console.log("getting session cookie",sessionCookie)
+  console.log("getting session cookie", sessionCookie)
 
   if (!sessionCookie) return null;
 
@@ -121,7 +121,7 @@ export async function getCurrentUser(): Promise<User | null> {
       .doc(decodedClaims.uid)
       .get();
     if (!userRecord.exists) return null;
- console.log("in the getuser function end")
+    console.log("in the getuser function end")
     return {
       ...userRecord.data(),
       id: userRecord.id,
@@ -140,3 +140,5 @@ export async function isAuthenticated() {
   console.log("in the authenticated function:", user);
   return !!user;
 }
+
+

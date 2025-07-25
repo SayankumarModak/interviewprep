@@ -289,7 +289,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { vapi } from "@/lib/vapi.sdk";
-import { interviewer, interviewer2 } from "@/constants";
+import { generator, interviewer, interviewer2 } from "@/constants";
 import { createFeedback } from "@/lib/actions/general.action";
 // import { generator } from "@/constants";
 // import { createFeedback } from "@/lib/actions/general.action";
@@ -357,7 +357,7 @@ const Agent = ({
          vapi.off("error", onError);
       };
    }, []);
-   
+
    const handleGenerateFeedback = async (messages: SavedMessage[]) => {
 
 
@@ -366,9 +366,9 @@ const Agent = ({
          interviewId: interviewId!,
          userId: userId!,
          transcript: messages,
-         feedbackId, 
+         feedbackId,
       });
-      
+
       if (success && id) {
          router.push(`/interview/${interviewId}/feedback`);
       } else {
@@ -381,7 +381,7 @@ const Agent = ({
       if (messages.length > 0) {
          setLastMessage(messages[messages.length - 1].content);
       }
-      
+
       if (callStatus === CallStatus.FINISHED) {
          if (type === "generate") {
             router.push("/");
@@ -430,6 +430,7 @@ const Agent = ({
       }
    };
 
+
    const handleDisconnect = () => {
       setCallStatus(CallStatus.FINISHED);
       vapi.stop();
@@ -465,22 +466,24 @@ const Agent = ({
                </div>
             </div>
          </div>
-         {messages.length > 0 && (
-            <div className="transcript-border">
-               <div className="transcript">
-                  <p
-                     key={lastMessage}
-                     className={cn(
-                        "transition-opacity duration-500 opacity-0",
-                        "animate-fadeIn opacity-100"
-                     )}
-                  >
-                     {lastMessage}
-                  </p>
+         {
+            messages.length > 0 && (
+               <div className="transcript-border">
+                  <div className="transcript">
+                     <p
+                        key={lastMessage}
+                        className={cn(
+                           "transition-opacity duration-500 opacity-0",
+                           "animate-fadeIn opacity-100"
+                        )}
+                     >
+                        {lastMessage}
+                     </p>
+                  </div>
                </div>
-            </div>
-         )}
-         <div className="w-full flex justify-center">
+            )
+         }
+         < div className="w-full flex justify-center" >
             {callStatus !== "ACTIVE" ? (
                <button className="relative btn-call" onClick={() => handleCall()}>
                   <span
@@ -500,7 +503,7 @@ const Agent = ({
                   End
                </button>
             )}
-         </div>
+         </div >
       </>
    );
 };

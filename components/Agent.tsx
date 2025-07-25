@@ -290,6 +290,7 @@ import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { vapi } from "@/lib/vapi.sdk";
 import { interviewer, interviewer2 } from "@/constants";
+import { createFeedback } from "@/lib/actions/general.action";
 // import { generator } from "@/constants";
 // import { createFeedback } from "@/lib/actions/general.action";
 
@@ -361,14 +362,13 @@ const Agent = ({
 
 
       console.log("handleGenerateFeedback");
-      // const { success, feedbackId: id } = await createFeedback({
-      //    interviewId: interviewId!,
-      //    userId: userId!,
-      //    transcript: messages,
-      //    feedbackId, 
-      // });
-
-      const{success, id}={success:true,id:"feefback-id"}
+      const { success, feedbackId: id } = await createFeedback({
+         interviewId: interviewId!,
+         userId: userId!,
+         transcript: messages,
+         feedbackId, 
+      });
+      
       if (success && id) {
          router.push(`/interview/${interviewId}/feedback`);
       } else {
